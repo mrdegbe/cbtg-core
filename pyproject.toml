@@ -1,0 +1,14 @@
+[project]
+name = "onboardly-core"
+version = "0.1.0"
+description = "Core engine for AI-powered codebase tour generation"
+authors = [{ name = "Raymond Degbe", email = "mrdegbe14@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "openai",        # or any LLM API later
+    "tqdm"
+]
+
+[tool.setuptools.packages.find]
+where = ["onboardly_core"]

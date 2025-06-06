@@ -1,7 +1,7 @@
-# 📦 Codebase Tour Guide (`cbtg`) - core
+# 📦 Codebase Tour Guide Core
 
 
-**Codebase Tour Guide Core** (`cbtg-core`) is the Python backend engine for generating intelligent codebase summaries and guided tours. It is designed to be used alongside the `cbtg` CLI written in Go.
+**Codebase Tour Guide Core** is the Python backend engine for generating intelligent codebase summaries and guided tours. It is designed to be used alongside the `cbtg` CLI written in Go.
 
 ---
 

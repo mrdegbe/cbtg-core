@@ -1,8 +1,8 @@
 import sys, io
 from pathlib import Path
-from cbtg_core.scanner import scan_project_directory
-from cbtg_core.structure_mapper import group_files_by_section
-from cbtg_core.summarizer import summarize_section
+from cbtg.scanner import scan_project_directory
+from cbtg.structure_mapper import group_files_by_section
+from cbtg.summarizer import summarize_section
 
 # 🔧 Force stdout to UTF-8
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')

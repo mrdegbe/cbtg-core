@@ -1,5 +1,5 @@
 import os, sys, shutil
-from cbtg_core.scanner import scan_project_directory
+from cbtg.scanner import scan_project_directory
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))

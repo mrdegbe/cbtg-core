@@ -1,6 +1,6 @@
 import pytest
 from pathlib import Path
-from onboardly_core.summarizer import summarize_section
+from cbtg_core.summarizer import summarize_section
 from unittest.mock import patch, MagicMock
 import tempfile
 
@@ -14,7 +14,7 @@ def temp_project_dir():
         yield root, ["test_file.py"]
 
 
-@patch("onboardly_core.summarizer.client.chat.completions.create")
+@patch("cbtg_core.summarizer.client.chat.completions.create")
 def test_summarize_section_returns_summary(mock_create, temp_project_dir):
     root_path, file_paths = temp_project_dir
 

@@ -1,41 +1,33 @@
+import sys, io
 from pathlib import Path
-from onboardly_core.scanner import scan_project_directory
-from onboardly_core.structure_mapper import group_files_by_section
-from onboardly_core.summarizer import summarize_section
+from cbtg_core.scanner import scan_project_directory
+from cbtg_core.structure_mapper import group_files_by_section
+from cbtg_core.summarizer import summarize_section
 
-# 1. Scan the directory
-scan = scan_project_directory("examples/sample_project")
+# 🔧 Force stdout to UTF-8
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-# 2. Group files into sections
-sections = group_files_by_section(scan)
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-# 3. Summarize each section
+def main(project_path: str):
+    path = Path(project_path).resolve()
+    scan = scan_project_directory(str(path))
+    sections = group_files_by_section(scan)
 
-# for section in sections["sections"]:
-#     result = summarize_section(
-#         section_name=section["name"],
-#         file_paths=section["files"],
-#         root_path=Path(scan["root"]),
-#     )
-#     print(f"\n🧠 SECTION: {result['section']}\n{result['summary']}\n{'-'*60}")
+    for section in sections["sections"]:
+        result = summarize_section(
+            section_name=section["name"],
+            file_paths=section["files"],
+            root_path=Path(scan["root"]),
+        )
+        print(f"\n🧠 SECTION: {result['section']}\n{result['summary']}\n{'-'*60}")
 
-summaries = []
 
-for section in sections["sections"]:
-    result = summarize_section(
-        section_name=section["name"],
-        file_paths=section["files"],
-        root_path=Path(scan["root"]),
-    )
-    summaries.append(result)
-    print(f"\n🧠 SECTION: {result['section']}\n{result['summary']}\n{'-'*60}")
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python run_summary.py <path_to_project>")
+        sys.exit(1)
 
-# 4. Write summaries to a Markdown file
-output_file = Path(scan["root"]) / "project_summary.md"
-with open(output_file, "w", encoding="utf-8") as f:
-    for summary in summaries:
-        f.write(f"## 🧠 {summary['section'].capitalize()} Section\n\n")
-        f.write(summary["summary"] + "\n\n")
-        f.write("---\n\n")
-
-print(f"\n✅ Summary also written to {output_file}")
+    project_path = sys.argv[1]
+    print(f"✅ Scanning project at: {project_path}")
+    main(project_path)

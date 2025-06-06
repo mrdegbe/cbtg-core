@@ -1,4 +1,4 @@
-from onboardly_core.structure_mapper import group_files_by_section
+from cbtg_core.structure_mapper import group_files_by_section
 
 
 def test_group_files_by_section():
